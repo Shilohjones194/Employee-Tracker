@@ -12,14 +12,19 @@ CREATE TABLE department (
 CREATE TABLE roles (
     roleId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(20),
-    FOREIGN KEY(deptId) REFERENCES department(deptId)
+    salary DECIMAL(),
+    dmentId INTEGER,
+    FOREIGN KEY(dmentId) REFERENCES department(deptId)
 );
 
 CREATE TABLE employee (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
-    FOREIGN KEY(roleId) REFERENCES roles(roleId),
+    rolesId INTEGER,
+    managerId INTEGER,
+    FOREIGN KEY(rolesId) REFERENCES roles(roleId),
+    FOREIGN KEY(managerId) REFERENCES employee(id)
 );
 
 INSERT INTO department (department_name) values ('');

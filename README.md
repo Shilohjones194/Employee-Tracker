@@ -1,7 +1,8 @@
 # Employee-Tracker
 
 ## Description
-
+* Video Demonstration:
+* Github Deployed Link:
 ## Developer-Profile:
 * GitHub: [Shilohjones194](https://github.com/Shilohjones194)
 
@@ -12,9 +13,12 @@
 * [Contributors](#contributors)
 * [Tests](#tests)
 * [Questions](#questions)
-* [Accpetance-Criteria](#acceptance-criteria)
+* [Acceptance-Criteria](#acceptance-criteria)
 ## Installation
 NPM install
+https://www.npmjs.com/package/inquirer
+https://www.npmjs.com/package/console.table 
+https://www.npmjs.com/package/mysql2
 
 ## Usage
 through the command line.
