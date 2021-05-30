@@ -29,6 +29,7 @@ CREATE TABLE employee (
 
 INSERT INTO department (department_name) values ('');
 
-INSERT INTO roles (title, ) values ('');
+INSERT INTO roles (title, salary, dmentId) values ('', '', '');
 
-INSERT INTO employee (first_name, last_name, roleId) values ('', '', '');
+INSERT INTO employee (first_name, last_name, rolesId) values ('', '', '');
+INSERT INTO employee (first_name, last_name, rolesId, managerId) values ('', '', '', '');

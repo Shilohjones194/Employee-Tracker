@@ -25,6 +25,8 @@ const mainMenu = () => {
         message: 'What would you like to do?',
         choices: [
             "View All Employees",
+            "View All Roles",
+            "View All Departments",
             "View All Employees By Department",
             "View All Employees By Manager",
             "Add Employee",
