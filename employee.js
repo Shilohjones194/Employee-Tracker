@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
  
 // create the connection to database
 const mysql = require('mysql');
@@ -6,10 +6,10 @@ const inquirer = require('inquirer');
 //create connection:
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: '3001',
+    port: '3306',
     user: 'root',
     password: 'Shilohjonezz194',
-    database: 'test'
+    database: 'employee_db'
 });
 
 // create MySQL global variables that use MYSQL to Join together.
@@ -17,11 +17,18 @@ const employees = "";
 const departments = "";
 const title ="";
 
+//connection (need to double check Syntax)
+connection.connect((err) => {
+    if (err) throw err;
+    console.log("Welecome to HR Mamagements system")
+    mainMenu()
+})
+
 // Create main menu
 const mainMenu = () => {
     inquirer.prompt ({
         type: 'list',
-        name: 'prompt',
+        name: 'action',
         message: 'What would you like to do?',
         choices: [
             "View All Employees",
@@ -35,6 +42,8 @@ const mainMenu = () => {
             "Update Employee's Manager",
             "Exit",
         ],
+    }).then(option => {
+        console.log(option)
     })
     //then.add connections to all of the choices above^^
 }
@@ -126,8 +135,7 @@ const updateTitle = () => {
         },
     ])
     //.then Update response
-},
-//update Employee Manager:
+} //update Employee Manager:
 const updateMnger = () => {
     console.log("Updating Employee Manager");
     inquirer.prompt([
