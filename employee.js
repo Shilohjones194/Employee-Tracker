@@ -44,10 +44,60 @@ const mainMenu = () => {
         ],
     }).then(option => {
         console.log(option)
+        switch(option.action){
+            case "View All Employees":
+                viewEmployees();
+                break;
+            case "View All Roles":
+                viewRoles();
+                break;
+            case "View All Departments":
+                viewDepartments();
+                break;
+            case "Add Employee":
+                addEmployee();
+                break;
+            case "Update Employee Role":
+                updateEmployeeRole();
+                break;
+
+            default:
+                console.log("See you next time!!")
+                connection.end()
+                process.exit(0)
+
+
+        }
     })
     //then.add connections to all of the choices above^^
 }
 
+// function View Employee
+
+const viewEmployees = () => {
+    console.log("View Employees")
+    connection.query("SELECT * FROM EMPLOYEE;",function(err,data){
+        if (err) throw err;
+        console.table(data);
+        mainMenu()
+    })
+}
+const viewDepartments = () => {
+    console.log("View Departments")
+    connection.query("SELECT * FROM DEPARTMENT;",function(err,data){
+        if (err) throw err;
+        console.table(data);
+        mainMenu()
+    })
+}
+const viewRoles = () => {
+    console.log("View Roles")
+    connection.query("SELECT * FROM ROLES;",function(err,data){
+        if (err) throw err;
+        console.table(data);
+        mainMenu()
+    })
+}
 //function for Adding Employee
 const addEmployee = () => {
     console.log('Adding Employee');
