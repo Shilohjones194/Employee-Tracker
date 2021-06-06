@@ -1,5 +1,5 @@
 // const mysql = require('mysql2');
- 
+
 // create the connection to database
 const mysql = require('mysql');
 const inquirer = require('inquirer');
@@ -13,20 +13,21 @@ const connection = mysql.createConnection({
 });
 
 // create MySQL global variables that use MYSQL to Join together.
-const employees = "";
-const departments = "";
-const title ="";
+const employeesByAll =
+const departmentsAll =
+const rolesAll =
+const employeesEverything =
 
-//connection (need to double check Syntax)
-connection.connect((err) => {
-    if (err) throw err;
-    console.log("Welecome to HR Mamagements system")
-    mainMenu()
-})
+    // connection
+    connection.connect((err) => {
+        if (err) throw err;
+        console.log("Welcome to HR Management system")
+        mainMenu()
+    })
 
 // Create main menu
 const mainMenu = () => {
-    inquirer.prompt ({
+    inquirer.prompt({
         type: 'list',
         name: 'action',
         message: 'What would you like to do?',
@@ -34,17 +35,16 @@ const mainMenu = () => {
             "View All Employees",
             "View All Roles",
             "View All Departments",
-            "View All Employees By Department",
-            "View All Employees By Manager",
             "Add Employee",
+            "Add Role",
+            "Add Department",
             "Remove Employee",
             "Update Employee Role",
-            "Update Employee's Manager",
             "Exit",
         ],
     }).then(option => {
         console.log(option)
-        switch(option.action){
+        switch (option.action) {
             case "View All Employees":
                 viewEmployees();
                 break;
@@ -57,16 +57,23 @@ const mainMenu = () => {
             case "Add Employee":
                 addEmployee();
                 break;
+            case "Add Role":
+                addRole();
+                break;
+            case "Add Department":
+                addDepartment();
+                break;
+            case "Remove Employee":
+                delEmployee();
             case "Update Employee Role":
                 updateEmployeeRole();
                 break;
+
 
             default:
                 console.log("See you next time!!")
                 connection.end()
                 process.exit(0)
-
-
         }
     })
     //then.add connections to all of the choices above^^
@@ -76,7 +83,7 @@ const mainMenu = () => {
 
 const viewEmployees = () => {
     console.log("View Employees")
-    connection.query("SELECT * FROM EMPLOYEE;",function(err,data){
+    connection.query("SELECT * FROM EMPLOYEE;", function (err, data) {
         if (err) throw err;
         console.table(data);
         mainMenu()
@@ -84,7 +91,7 @@ const viewEmployees = () => {
 }
 const viewDepartments = () => {
     console.log("View Departments")
-    connection.query("SELECT * FROM DEPARTMENT;",function(err,data){
+    connection.query("SELECT * FROM DEPARTMENT;", function (err, data) {
         if (err) throw err;
         console.table(data);
         mainMenu()
@@ -92,7 +99,7 @@ const viewDepartments = () => {
 }
 const viewRoles = () => {
     console.log("View Roles")
-    connection.query("SELECT * FROM ROLES;",function(err,data){
+    connection.query("SELECT * FROM ROLES;", function (err, data) {
         if (err) throw err;
         console.table(data);
         mainMenu()
@@ -135,15 +142,15 @@ const addDepartment = () => {
             name: 'dept_name',
             message: 'Please enter the name of Department: ',
         },
-            //double check syntax for responses.
-            //validate: (response);
-            //.then answer;//display response
+        //double check syntax for responses.
+        //validate: (response);
+        //.then answer;//display response
     ])
 };
 //function add role/job title
 const addTitle = () => {
-    console.log ('Adding Title');
-    inquirer. prompt([
+    console.log('Adding Title');
+    inquirer.prompt([
         {
             type: 'input',
             name: 'title',
@@ -161,9 +168,9 @@ const addTitle = () => {
 //Function to remove/Delete employee if mistake was made:
 const delEmployee = () => {
     console.log('Deleting Employee');
-    inquirer.prompt([ 
+    inquirer.prompt([
         {
-            type:'',
+            type: '',
         },
     ])
 }
