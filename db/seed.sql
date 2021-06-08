@@ -1,35 +1,17 @@
-DROP DATABASE IF EXISTS employee_db;
+INSERT INTO department (department_name) values ('IT');
+INSERT INTO department (department_name) values ('Sales');
+INSERT INTO department (department_name) values ('Management');
 
-CREATE DATABASE employee_db;
+SELECT * FROM DEPARTMENT;
 
-USE employee_db;
+INSERT INTO roles (title, salary, dmentId) values ('IT Manager', 12000, 1);
+INSERT INTO roles (title, salary, dmentId) values ('Sales Manager', 120000, 2);
+INSERT INTO roles (title, salary, dmentId) values ('Executive', 320000, 3);
 
-CREATE TABLE department (
-    deptId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    department_name VARCHAR(30)
-);
+SELECT * FROM ROLES;
 
-CREATE TABLE roles (
-    roleId INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30),
-    salary DECIMAL(),
-    dmentId INTEGER,
-    FOREIGN KEY(dmentId) REFERENCES department(deptId)
-);
+INSERT INTO employee (first_name, last_name, rolesId, managerId) values ('Luke', 'Jones', 2, NULL);
+INSERT INTO employee (first_name, last_name, rolesId, managerId) values ('Becca', 'Jones', 1, NULL);
+INSERT INTO employee (first_name, last_name, rolesId, managerId) values ('DAkota', 'Jones', 3, NULL);
 
-CREATE TABLE employee (
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
-    rolesId INTEGER,
-    managerId INTEGER,
-    FOREIGN KEY(rolesId) REFERENCES roles(roleId),
-    FOREIGN KEY(managerId) REFERENCES employee(id)
-);
-
-INSERT INTO department (department_name) values ('');
-
-INSERT INTO roles (title, salary, dmentId) values ('', '', '');
-
-INSERT INTO employee (first_name, last_name, rolesId) values ('', '', '');
-INSERT INTO employee (first_name, last_name, rolesId, managerId) values ('', '', '', '');
+SELECT * FROM EMPLOYEE;

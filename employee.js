@@ -1,7 +1,7 @@
-// const mysql = require('mysql2');
+const mysql = require('mysql2');
 
 // create the connection to database
-const mysql = require('mysql');
+//const mysql = require('mysql');
 const inquirer = require('inquirer');
 //create connection:
 const connection = mysql.createConnection({
@@ -13,17 +13,18 @@ const connection = mysql.createConnection({
 });
 
 // create MySQL global variables that use MYSQL to Join together.
-const employeesByAll =
-const departmentsAll =
-const rolesAll =
-const employeesEverything =
+const employeesByAll = '';
+const departmentsAll = '';
+const rolesAll = '';
+const employeesEverything = '';
 
-    // connection
-    connection.connect((err) => {
-        if (err) throw err;
-        console.log("Welcome to HR Management system")
-        mainMenu()
-    })
+// connection
+connection.connect((err) => {
+    if (err) throw err;
+    console.log("Welcome to HR Management system")
+    mainMenu()
+})
+
 
 // Create main menu
 const mainMenu = () => {
@@ -65,9 +66,9 @@ const mainMenu = () => {
                 break;
             case "Remove Employee":
                 delEmployee();
-            case "Update Employee Role":
-                updateEmployeeRole();
-                break;
+            // case "Update Employee Role":
+            //     updateEmployeeRole();
+            //     break;
 
 
             default:
@@ -89,14 +90,6 @@ const viewEmployees = () => {
         mainMenu()
     })
 }
-const viewDepartments = () => {
-    console.log("View Departments")
-    connection.query("SELECT * FROM DEPARTMENT;", function (err, data) {
-        if (err) throw err;
-        console.table(data);
-        mainMenu()
-    })
-}
 const viewRoles = () => {
     console.log("View Roles")
     connection.query("SELECT * FROM ROLES;", function (err, data) {
@@ -105,9 +98,24 @@ const viewRoles = () => {
         mainMenu()
     })
 }
+const viewDepartments = () => {
+    console.log("View Departments")
+    connection.query("SELECT * FROM DEPARTMENT;", function (err, data) {
+        if (err) throw err;
+        console.table(data);
+        mainMenu()
+    })
+}
+
 //function for Adding Employee
 const addEmployee = () => {
     console.log('Adding Employee');
+    connection.query(
+        'SELECT id, first_name, last_name FROM employee',
+        (err, res) => {
+            if (err) throw err;
+        }
+    )
     inquirer.prompt([
         {
             type: 'input',
@@ -131,7 +139,17 @@ const addEmployee = () => {
             message: 'Who do they report to?',
             choices: ["give option of none"],
         },
-    ])
+    ]).then(options => {
+        connection.query(`INSERT into EMPLOYEE (first_name, last_name, rolesId, managerId) 
+        VALUES (?, ?, ?, ?)` , [options.first_name, options.last_name, options.titleId, options.managerId],
+            (err, res) => {
+                if (err) throw err;
+                console.table('Employee added successfully! ')
+                mainMenu()
+            })
+        //         INSERT INTO Customers (CustomerName, City, Country)
+        // VALUES ('Cardinal', 'Stavanger', 'Norway');
+    })
 };
 //function add Department
 const addDepartment = () => {
@@ -141,10 +159,11 @@ const addDepartment = () => {
             type: 'input',
             name: 'dept_name',
             message: 'Please enter the name of Department: ',
+            validate: (response) =>
+                response === ''
+
         },
-        //double check syntax for responses.
-        //validate: (response);
-        //.then answer;//display response
+
     ])
 };
 //function add role/job title
@@ -167,12 +186,30 @@ const addTitle = () => {
 }
 //Function to remove/Delete employee if mistake was made:
 const delEmployee = () => {
-    console.log('Deleting Employee');
-    inquirer.prompt([
-        {
-            type: '',
-        },
-    ])
+    connection.promise().query("SELECT * FROM employee", (err, res) => {
+        if (err) throw err;
+        return res
+    }).then(Employees => {
+        console.log(employees);
+    })
+    // viewEmployees()
+    // inquirer.prompt([
+    //     {
+    //         type: 'list',
+    //         name: 'id',
+    //         message: 'Choose employee',
+    //         choices: [..]
+    //     },
+    // ])
+    // .then(({ }) => {
+    //     connection.query(
+    //         (err) => {
+    //             if (err) throw err;
+    //             console.log('Employee Deleted!');
+    //             mainMenu()
+    //         }
+    //     )
+    // })
 }
 // Function to update Employee role/title
 const updateTitle = () => {
