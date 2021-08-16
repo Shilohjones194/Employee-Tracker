@@ -1,17 +1,21 @@
 # Employee-Tracker
 
+
+![image](https://user-images.githubusercontent.com/76697212/129641602-fb2d121c-f6ce-4fe5-8b33-d06b2de789f1.png)
+
+
 ## Description
-* Video Demonstration:
-* Github Deployed Link:
+
+* Video Demonstration: https://drive.google.com/file/d/1_3SbJNRtQW_90xAvNp2hFQHpFcab8USt/view
+* Github Deployed Link: https://shilohjones194.github.io/Employee-Tracker/
+
 ## Developer-Profile:
+
 * GitHub: [Shilohjones194](https://github.com/Shilohjones194)
 
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
-* [license](#license)
-* [Contributors](#contributors)
-* [Tests](#tests)
 * [Questions](#questions)
 * [Acceptance-Criteria](#acceptance-criteria)
 ## Installation
@@ -21,14 +25,11 @@ https://www.npmjs.com/package/console.table
 https://www.npmjs.com/package/mysql2
 
 ## Usage
-through the command line.
+NPM Start & through the command line.
 
 
 ## Questions
 * Email: Please contact me at [Shilohjonezz@gmail.com](mailto:Shilohjonezz@gmail.com) if you have any questions.
-
-
-
 
 
 ## Acceptance-Criteria
