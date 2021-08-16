@@ -131,13 +131,13 @@ const addEmployee = () => {
             type: 'list',
             name: 'titleId',
             message: 'Please choose the title for new employee',
-            choices: [],
+            choices: ['IT Manager', 'Sales Manager', 'Executive'],
         },
         {
             type: 'list',
             name: 'managerId',
             message: 'Who do they report to?',
-            choices: ["give option of none"],
+            choices: ["Executive huh? You're kind of a big deal!"],
         },
     ]).then(options => {
         connection.query(`INSERT into EMPLOYEE (first_name, last_name, rolesId, managerId) 
@@ -192,24 +192,24 @@ const delEmployee = () => {
     }).then(Employees => {
         console.log(employees);
     })
-    // viewEmployees()
-    // inquirer.prompt([
-    //     {
-    //         type: 'list',
-    //         name: 'id',
-    //         message: 'Choose employee',
-    //         choices: [..]
-    //     },
-    // ])
-    // .then(({ }) => {
-    //     connection.query(
-    //         (err) => {
-    //             if (err) throw err;
-    //             console.log('Employee Deleted!');
-    //             mainMenu()
-    //         }
-    //     )
-    // })
+    viewEmployees()
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Choose employee',
+            choices: []
+        },
+    ])
+    .then(({ }) => {
+        connection.query(
+            (err) => {
+                if (err) throw err;
+                console.log('Employee Deleted!');
+                mainMenu()
+            }
+        )
+    })
 }
 // Function to update Employee role/title
 const updateTitle = () => {
